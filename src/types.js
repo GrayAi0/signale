@@ -1,7 +1,7 @@
 'use strict';
-const figures = require('figures');
+import figures from 'figures'
 
-module.exports = {
+export default {
   error: {
     badge: figures.cross,
     color: 'red',

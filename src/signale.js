@@ -1,12 +1,18 @@
 'use strict';
-const util = require('util');
-const path = require('path');
-const readline = require('readline');
-const chalk = require('chalk');
-const figures = require('figures');
-const pkgConf = require('pkg-conf');
-const pkg = require('./../package.json');
-const defaultTypes = require('./types');
+import util from 'util'
+import path from 'path'
+import readline from 'readline'
+import chalk from 'chalk'
+import figures from 'figures'
+import pkgConf from 'pkg-conf'
+import defaultTypes from './types.js'
+import { readFileSync } from 'fs';
+
+const pkg = JSON.parse(
+  await readFileSync(
+    new URL('./../package.json', import.meta.url)
+  )
+);
 
 const {green, grey, red, underline, yellow} = chalk;
 
@@ -14,7 +20,7 @@ let isPreviousLogInteractive = false;
 const defaults = pkg.options.default;
 const namespace = pkg.name;
 
-class Signale {
+export default class Signale {
   constructor(options = {}) {
     this._interactive = options.interactive || false;
     this._config = Object.assign(this.packageConfiguration, options.config);
@@ -404,5 +410,3 @@ class Signale {
     }
   }
 }
-
-module.exports = Signale;

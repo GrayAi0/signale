@@ -1,4 +1,4 @@
 'use strict';
-const Signale = require('./src/signale');
+import Signale from './src/signale.js'
 
-module.exports = Object.assign(new Signale(), {Signale});
+export default  Object.assign(new Signale(), {Signale});
